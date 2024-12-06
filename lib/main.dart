@@ -1,5 +1,8 @@
 import 'package:ebook_app/features/onboarding/presentation/views/onboarding_view.dart';
+import 'package:ebook_app/features/splash_screen/cubit/splash_screen_cubit.dart';
+import 'package:ebook_app/features/splash_screen/view/splash_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -11,9 +14,15 @@ class EbookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: OnboardingView(),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => SplashScreenCubit()..displayTheme(),
+          ),
+        ],
+        child: GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: SplashView(),
+        ));
   }
 }
