@@ -1,4 +1,5 @@
 import 'package:ebook_app/features/onboarding/presentation/views/onboarding_view.dart';
+import 'package:ebook_app/features/signin_screen/cubit/sign_in_cubit.dart';
 import 'package:ebook_app/features/splash_screen/cubit/splash_screen_cubit.dart';
 import 'package:ebook_app/features/splash_screen/view/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,9 @@ class EbookApp extends StatelessWidget {
           BlocProvider(
             create: (context) => SplashScreenCubit()..displayTheme(),
           ),
+          BlocProvider(
+            create: (context) => SignInCubit(),
+          )
         ],
         child: GetMaterialApp(
           debugShowCheckedModeBanner: false,

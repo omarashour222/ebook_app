@@ -1,6 +1,8 @@
 import 'package:ebook_app/constants.dart';
 import 'package:ebook_app/features/onboarding/presentation/views/widgets/custom_bottom.dart';
+import 'package:ebook_app/features/signin_screen/views/signin_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class OnboardingViewBody extends StatelessWidget {
   const OnboardingViewBody({super.key});
@@ -41,10 +43,15 @@ class OnboardingViewBody extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        CustomButtom(
-          color: kPrimaryColor,
-          text: 'Log In as Guest',
-          textColor: Colors.white,
+        GestureDetector(
+          onTap: () {
+            Get.to(() => const SigninView());
+          },
+          child: CustomButtom(
+            color: kPrimaryColor,
+            text: 'Sign In',
+            textColor: Colors.white,
+          ),
         ),
         SizedBox(
           height: 70,
