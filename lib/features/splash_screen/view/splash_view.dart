@@ -16,15 +16,11 @@ class SplashView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           backgroundColor: cubit.backgroundColor,
-          body: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Center(
-              child: SizedBox(
-                  width: width * 0.55,
-                  height: height * 0.35,
-                  child:
-                      Image.asset(imagePath + 'logo${cubit.chooseLogo}.png')),
-            ),
+          body: Center(
+            child: SizedBox(
+                width: width * 0.55,
+                height: height * 0.35,
+                child: Image.asset(imagePath + 'logo${cubit.chooseLogo}.png')),
           ),
         );
       },
