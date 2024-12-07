@@ -1,5 +1,6 @@
 import 'package:ebook_app/constants.dart';
 import 'package:ebook_app/features/onboarding/presentation/views/widgets/custom_bottom.dart';
+import 'package:ebook_app/features/sign_up/views/sign_up_view.dart';
 import 'package:ebook_app/features/signin_screen/views/signin_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,6 +40,9 @@ class OnboardingViewBody extends StatelessWidget {
           color: Colors.white,
           text: 'Create Account',
           textColor: kPrimaryColor,
+          onTap: () {
+            Get.to(SignUpView());
+          },
         ),
         SizedBox(
           height: 20,

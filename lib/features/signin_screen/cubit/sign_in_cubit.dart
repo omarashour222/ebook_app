@@ -11,6 +11,10 @@ part 'sign_in_state.dart';
 class SignInCubit extends Cubit<SignInState> {
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+        final TextEditingController phoneController = TextEditingController();
+
+
   SignInModel model = SignInModel();
   bool istextObsecured = true;
   SignInCubit() : super(SignInInitial());
@@ -19,7 +23,14 @@ class SignInCubit extends Cubit<SignInState> {
     userNameController.text = '';
     emit(ClearText());
   }
-
+  void clearEmailText() {
+    emailController.text = '';
+    emit(ClearEmailText());
+  }
+    void clearPhoneNumber() {
+    phoneController.text = '';
+    emit(ClearPhoneNumber());
+  }
   void showingPass() {
     istextObsecured = !istextObsecured;
     emit(ShowingPass());
