@@ -10,6 +10,7 @@ Widget passWordTextFormField(
   return BlocBuilder<SignInCubit, SignInState>(
     builder: (context, state) {
       return TextFormField(
+          controller: cubit.passwordController,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'This field cannot be empty';
