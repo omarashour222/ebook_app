@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebook_app/features/helpers/dio_helper.dart';
 import 'package:ebook_app/features/helpers/hive_helper.dart';
-import 'package:ebook_app/features/home_screen/views/home_view.dart';
+import 'package:ebook_app/features/main_views/views/bottom_nav.dart';
 import 'package:ebook_app/features/signin_screen/models/signin_model.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -34,7 +34,7 @@ class SignUpCubit extends Cubit<SignUpState> {
              HiveHelper.setToken(model.data?.token ?? "");
         HiveHelper.setValueLoginBox();
 
-        Get.offAll(const HomeView());
+        Get.offAll(const BottomNav());
 
         emit(RegisterSuccessState(model.message ?? ""));
       } else {
