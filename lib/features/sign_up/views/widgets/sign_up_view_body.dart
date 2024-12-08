@@ -89,7 +89,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                       padding: EdgeInsets.zero,
                     ),
                     onPressed: () {
-                      Get.to(SigninView());
+                      Get.to(() => SigninView());
                     },
                     child: Text(
                       '  Log in here',

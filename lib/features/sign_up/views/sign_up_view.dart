@@ -12,24 +12,25 @@ class SignUpView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<SignUpCubit, SignUpState>(
       listener: (context, state) {
-         if (state is RegisterErrorState) {
-            Get.snackbar(
-              "Error",
-              state.msg,
-              backgroundColor: Colors.red,
-              colorText: Colors.white,
-            );
-          } else if (state is RegisterSuccessState) {
-            Get.snackbar(
-              "Success",
-              state.msge,
-              backgroundColor: Colors.green,
-              colorText: Colors.white,
-            );
-          }
+        if (state is RegisterErrorState) {
+          Get.snackbar(
+            "Error",
+            state.msg,
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+          );
+        } else if (state is RegisterSuccessState) {
+          Get.snackbar(
+            "Success",
+            state.msge,
+            backgroundColor: Colors.green,
+            colorText: Colors.white,
+          );
+        }
         // TODO: implement listener
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SignUpViewBody(),
       ),
     );

@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 Widget signInButton(double height, BuildContext context, String email,
-    String password, GlobalKey<FormState> key) {
+    String password, GlobalKey<FormState> formKey) {
   final cubit = context.read<SignInCubit>();
   return Padding(
     padding: EdgeInsets.only(top: height * 0.070),
     child: GestureDetector(
       onTap: () {
-        if (key.currentState!.validate()) {
+        if (formKey.currentState!.validate()) {
           cubit.logIn(email: email, password: password);
         }
       },

@@ -11,9 +11,8 @@ part 'sign_in_state.dart';
 class SignInCubit extends Cubit<SignInState> {
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-    final TextEditingController emailController = TextEditingController();
-        final TextEditingController phoneController = TextEditingController();
-
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   SignInModel model = SignInModel();
   bool istextObsecured = true;
@@ -23,14 +22,17 @@ class SignInCubit extends Cubit<SignInState> {
     userNameController.text = '';
     emit(ClearText());
   }
+
   void clearEmailText() {
     emailController.text = '';
     emit(ClearEmailText());
   }
-    void clearPhoneNumber() {
+
+  void clearPhoneNumber() {
     phoneController.text = '';
     emit(ClearPhoneNumber());
   }
+
   void showingPass() {
     istextObsecured = !istextObsecured;
     emit(ShowingPass());
@@ -39,14 +41,14 @@ class SignInCubit extends Cubit<SignInState> {
   void logIn({required String email, required String password}) async {
     emit(LogInLoading());
     try {
-      final response = await DioHelper.getUrls(
+      final response = await DioHelper.postUrls(
         Url: 'login',
         body: {'email': email, 'password': password},
       );
       model = SignInModel.fromJson(response.data);
       if (model.status == true) {
         emit(LogInSuccess());
-        Get.to(() => HomeView());
+        Get.off(() => const HomeView());
       } else {
         emit(LogInFailed(model.message ?? 'couldn\'t find the error'));
       }

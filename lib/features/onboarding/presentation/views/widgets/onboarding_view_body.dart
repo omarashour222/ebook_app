@@ -49,7 +49,7 @@ class OnboardingViewBody extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Get.to(() => const SigninView());
+            Get.to(() => SigninView());
           },
           child: CustomButtom(
             color: kPrimaryColor,
