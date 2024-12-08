@@ -1,12 +1,12 @@
 import 'package:ebook_app/constants.dart';
-import 'package:ebook_app/features/sign_up/views/sign_up_view.dart';
+
 import 'package:ebook_app/features/signin_screen/cubit/sign_in_cubit.dart';
 import 'package:ebook_app/features/signin_screen/widgets/password_text.dart';
 import 'package:ebook_app/features/signin_screen/widgets/signin_button.dart';
+import 'package:ebook_app/features/signin_screen/widgets/signup_question.dart';
 import 'package:ebook_app/features/signin_screen/widgets/username_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 
 class SigninView extends StatelessWidget {
   SigninView({super.key});
@@ -45,31 +45,7 @@ class SigninView extends StatelessWidget {
                     SizedBox(
                       height: height * 0.023,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Dont\'t have and account yet?',
-                          style: TextStyle(
-                              color: const Color.fromARGB(255, 96, 96, 96),
-                              fontSize: 15),
-                        ),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          onPressed: () {
-                            Get.to(() => const SignUpView());
-                          },
-                          child: Text(
-                            '  Sign up here',
-                            style: TextStyle(
-                                color: const Color.fromARGB(255, 82, 82, 82),
-                                fontSize: 15),
-                          ),
-                        )
-                      ],
-                    ),
+                    signUpQuestion(),
                   ],
                 ),
               ),

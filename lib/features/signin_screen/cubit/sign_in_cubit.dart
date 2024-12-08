@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebook_app/features/helpers/dio_helper.dart';
-import 'package:ebook_app/features/home_screen/views/home_view.dart';
+import 'package:ebook_app/features/main_views/views/bottom_nav.dart';
 import 'package:ebook_app/features/signin_screen/models/signin_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -48,7 +48,7 @@ class SignInCubit extends Cubit<SignInState> {
       model = SignInModel.fromJson(response.data);
       if (model.status == true) {
         emit(LogInSuccess());
-        Get.off(() => const HomeView());
+        Get.offAll(() => const MainView());
       } else {
         emit(LogInFailed(model.message ?? 'couldn\'t find the error'));
       }

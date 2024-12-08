@@ -1,29 +1,24 @@
 import 'package:ebook_app/constants.dart';
 import 'package:ebook_app/features/home_screen/views/home_view.dart';
+import 'package:ebook_app/features/profile_screen/views/profile_view.dart';
+import 'package:ebook_app/features/settings_screen/views/setting_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
+class MainView extends StatefulWidget {
+  const MainView({super.key});
 
   @override
-  State<BottomNav> createState() => _BottomNavState();
+  State<MainView> createState() => _MainViewState();
 }
 
-class _BottomNavState extends State<BottomNav> {
+class _MainViewState extends State<MainView> {
   int selectIndex = 0;
 
   List<Widget> screens = [
-    HomeView(),
-    Center(
-      child: Text('Saved'),
-    ),
-    Center(
-      child: Text('Profile'),
-    ),
-    Center(
-      child: Text('Setting'),
-    ),
+    const HomeView(),
+    const SettingView(),
+    const ProfileView(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -47,11 +42,9 @@ class _BottomNavState extends State<BottomNav> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.home_outlined), label: 'Home'),
               BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.heart), label: 'Saved'),
+                  icon: Icon(Icons.settings_outlined), label: 'Settings'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.person_outline), label: 'Profile'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.settings_outlined), label: 'Settings')
             ]),
       ),
       body: screens[selectIndex],

@@ -11,14 +11,12 @@ part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitial());
-   SignInModel model = SignInModel();
-  
-
+  SignInModel model = SignInModel();
 
   void Register({
     required String email,
     required String phone,
-    required String name,  // Consistent usage of `username`
+    required String name, // Consistent usage of `username`
     required String password,
   }) async {
     emit(RegisterLoadingState());
@@ -31,10 +29,10 @@ class SignUpCubit extends Cubit<SignUpState> {
       });
       model = SignInModel.fromJson(response.data);
       if (model.status == true) {
-             HiveHelper.setToken(model.data?.token ?? "");
+        HiveHelper.setToken(model.data?.token ?? "");
         HiveHelper.setValueLoginBox();
 
-        Get.offAll(const BottomNav());
+        Get.offAll(const MainView());
 
         emit(RegisterSuccessState(model.message ?? ""));
       } else {
