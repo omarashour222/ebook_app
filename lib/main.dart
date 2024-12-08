@@ -1,5 +1,7 @@
 import 'package:ebook_app/features/helpers/dio_helper.dart';
 import 'package:ebook_app/features/helpers/hive_helper.dart';
+import 'package:ebook_app/features/home_screen/views/home_view.dart';
+import 'package:ebook_app/features/main_views/views/bottom_nav.dart';
 import 'package:ebook_app/features/sign_up/cubit/sign_up_cubit.dart';
 import 'package:ebook_app/features/signin_screen/cubit/sign_in_cubit.dart';
 import 'package:ebook_app/features/splash_screen/cubit/splash_screen_cubit.dart';
@@ -10,10 +12,10 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 
-void main()async {
-    await Hive.initFlutter();
+void main() async {
+  await Hive.initFlutter();
 
- await Hive.openBox('LOGIN_BOX'); 
+  await Hive.openBox('LOGIN_BOX');
   await Hive.openBox(HiveHelper.token);
   DioHelper.init();
   runApp(const EbookApp());
@@ -32,7 +34,7 @@ class EbookApp extends StatelessWidget {
           BlocProvider(
             create: (context) => SignInCubit(),
           ),
-                    BlocProvider(
+          BlocProvider(
             create: (context) => SignUpCubit(),
           )
         ],

@@ -18,8 +18,8 @@ class SplashView extends StatelessWidget {
           backgroundColor: cubit.backgroundColor,
           body: Center(
             child: SizedBox(
-                width: width * 0.55,
-                height: height * 0.35,
+                width: width * 0.40,
+                height: height * 0.20,
                 child: Image.asset(imagePath + 'logo${cubit.chooseLogo}.png')),
           ),
         );

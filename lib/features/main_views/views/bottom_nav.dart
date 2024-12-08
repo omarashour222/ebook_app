@@ -38,6 +38,7 @@ class _MainViewState extends State<MainView> {
             },
             selectedIconTheme: IconThemeData(size: 28),
             unselectedIconTheme: IconThemeData(size: 28),
+            backgroundColor: Colors.white,
             items: [
               BottomNavigationBarItem(
                   icon: Icon(Icons.home_outlined), label: 'Home'),
