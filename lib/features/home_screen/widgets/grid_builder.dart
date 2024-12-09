@@ -5,6 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 Widget gridBuilder(BuildContext context) {
   final booksCubit = context.read<HomeScreenCubit>();
+  if (booksCubit.booksList.isEmpty) {
+    return Center(
+        child: Text(
+      "No books found!",
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+      ),
+    ));
+  }
   return GridView.builder(
     shrinkWrap: true,
     physics: NeverScrollableScrollPhysics(),
