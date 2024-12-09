@@ -1,4 +1,3 @@
-import 'package:ebook_app/constants.dart';
 import 'package:ebook_app/features/home_screen/widgets/grid_builder.dart';
 import 'package:ebook_app/features/home_screen/widgets/searchbar.dart';
 import 'package:ebook_app/features/home_screen/widgets/semi_appbar.dart';

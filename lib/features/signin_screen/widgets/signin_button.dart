@@ -13,6 +13,8 @@ Widget signInButton(double height, BuildContext context, String email,
         if (formKey.currentState!.validate()) {
           cubit.logIn(email: email, password: password);
         }
+
+        cubit.setToken();
       },
       child: Container(
         width: double.infinity,

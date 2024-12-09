@@ -5,6 +5,7 @@ import 'package:ebook_app/features/main_views/views/bottom_nav.dart';
 import 'package:ebook_app/features/signin_screen/models/signin_model.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
 
 part 'sign_up_state.dart';
@@ -12,7 +13,7 @@ part 'sign_up_state.dart';
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitial());
   SignInModel model = SignInModel();
-
+  String? username;
   void Register({
     required String email,
     required String phone,
@@ -30,6 +31,10 @@ class SignUpCubit extends Cubit<SignUpState> {
       model = SignInModel.fromJson(response.data);
       if (model.status == true) {
         HiveHelper.setToken(model.data?.token ?? "");
+        username = model.data?.name;
+
+        var box = Hive.box('USER_BOX');
+        box.put('username', username);
         HiveHelper.setValueLoginBox();
 
         Get.offAll(const MainView());

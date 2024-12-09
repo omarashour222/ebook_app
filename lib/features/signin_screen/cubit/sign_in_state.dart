@@ -8,6 +8,7 @@ final class SignInInitial extends SignInState {}
 final class ClearText extends SignInState {}
 final class ClearEmailText extends SignInState {}
 final class ClearPhoneNumber extends SignInState {}
+final class SetToken extends SignInState {}
 
 
 final class ShowingPass extends SignInState {}

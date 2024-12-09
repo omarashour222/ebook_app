@@ -4,6 +4,7 @@ import 'package:ebook_app/features/sign_up/views/sign_up_view.dart';
 import 'package:ebook_app/features/signin_screen/views/signin_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
 class OnboardingViewBody extends StatelessWidget {
   const OnboardingViewBody({super.key});
@@ -41,7 +42,8 @@ class OnboardingViewBody extends StatelessWidget {
           text: 'Create Account',
           textColor: kPrimaryColor,
           onTap: () {
-            Get.to(SignUpView());
+            Hive.box('onboardingBox').put('ONBOARDING_KEY', true);
+            Get.offAll(SignUpView());
           },
         ),
         SizedBox(
@@ -49,7 +51,8 @@ class OnboardingViewBody extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Get.to(() => SigninView());
+            Hive.box('onboardingBox').put('ONBOARDING_KEY', true);
+            Get.offAll(() => SigninView());
           },
           child: CustomButtom(
             color: kPrimaryColor,
