@@ -1,7 +1,12 @@
-import 'package:ebook_app/constants.dart';
+import 'package:ebook_app/features/home_screen/model/books_model.dart';
 import 'package:flutter/material.dart';
 
-Widget actualItems() {
+Widget actualItems({
+  required Items books,
+}) {
+  final image = books.volumeInfo?.imageLinks?.thumbnail ??
+      'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png';
+  final title = books.volumeInfo?.title ?? 'no title';
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -9,8 +14,8 @@ Widget actualItems() {
         height: 280,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(23),
-          child: Image.asset(
-            imagePath + 'book placeholder.png',
+          child: Image.network(
+            image,
             fit: BoxFit.fill,
           ),
         ),
@@ -19,7 +24,7 @@ Widget actualItems() {
       Padding(
         padding: const EdgeInsets.only(left: 8),
         child: Text(
-          'Book name will be here',
+          title,
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,

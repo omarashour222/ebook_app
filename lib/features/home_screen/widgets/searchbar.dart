@@ -1,4 +1,5 @@
 import 'package:ebook_app/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget searchBar(double height, double width, BuildContext context) {
@@ -23,7 +24,7 @@ Widget searchBar(double height, double width, BuildContext context) {
           suffixIcon: Padding(
             padding: const EdgeInsets.only(right: 15),
             child: Icon(
-              Icons.search,
+              CupertinoIcons.search,
               size: 30,
             ),
           )),

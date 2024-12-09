@@ -20,101 +20,102 @@ class ProfileView extends StatelessWidget {
     var box = Hive.box('USER_BOX');
     String? username = box.get('username', defaultValue: signIn.username);
     return Scaffold(
+        backgroundColor: Colors.white,
         body: Padding(
-      padding: EdgeInsets.only(
-          top: height * 0.08, right: width * 0.07, left: width * 0.07),
-      child: Column(
-        children: [
-          CustomImageProfile(),
-          SizedBox(
-            height: 5,
-          ),
-          Text(
-            'Welcome, ${username ?? 'N/A'}',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: kPrimaryColor),
-          ),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          BlocBuilder<SwitchCubit, SwitchState>(
-            builder: (context, state) {
-              return Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Row(
+          padding: EdgeInsets.only(
+              top: height * 0.08, right: width * 0.07, left: width * 0.07),
+          child: Column(
+            children: [
+              CustomImageProfile(),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                'Welcome, ${username ?? 'N/A'}',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: kPrimaryColor),
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              BlocBuilder<SwitchCubit, SwitchState>(
+                builder: (context, state) {
+                  return Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
-                          'Profile',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              'Profile',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                        ProfileDetail(
+                          text: 'Personal Info',
+                          icon: Icons.info_outline,
+                        ),
+                        ProfileDetail(
+                          text: "Cards & Payments",
+                          icon: CupertinoIcons.creditcard,
+                        ),
+                        ProfileDetail(
+                          text: "Transactions History",
+                          icon: Icons.format_list_bulleted,
+                        ),
+                        ProfileDetail(
+                          text: "Privacy & Data",
+                          icon: Icons.front_hand_outlined,
+                        ),
+                        ProfileDetail(
+                          text: "Account ID",
+                          icon: Icons.account_box_outlined,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Security',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SecurityDetail(
+                          text: '2-factor authentication',
+                          value: cubit.switchValue,
+                          onChanged: (value) {
+                            cubit.authSwitch(value);
+                          },
+                        ),
+                        SecurityDetail(
+                          text: 'Face ID',
+                          value: cubit.faceId,
+                          onChanged: (value) {
+                            cubit.faceIdSwitch(value);
+                          },
+                        ),
+                        SecurityDetail(
+                          text: 'Passcode lock',
+                          value: cubit.passCode,
+                          onChanged: (value) {
+                            cubit.passCodeswitch(value);
+                          },
                         ),
                       ],
                     ),
-                    ProfileDetail(
-                      text: 'Personal Info',
-                      icon: Icons.info_outline,
-                    ),
-                    ProfileDetail(
-                      text: "Cards & Payments",
-                      icon: CupertinoIcons.creditcard,
-                    ),
-                    ProfileDetail(
-                      text: "Transactions History",
-                      icon: Icons.format_list_bulleted,
-                    ),
-                    ProfileDetail(
-                      text: "Privacy & Data",
-                      icon: Icons.front_hand_outlined,
-                    ),
-                    ProfileDetail(
-                      text: "Account ID",
-                      icon: Icons.account_box_outlined,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Security',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SecurityDetail(
-                      text: '2-factor authentication',
-                      value: cubit.switchValue,
-                      onChanged: (value) {
-                        cubit.authSwitch(value);
-                      },
-                    ),
-                    SecurityDetail(
-                      text: 'Face ID',
-                      value: cubit.faceId,
-                      onChanged: (value) {
-                        cubit.faceIdSwitch(value);
-                      },
-                    ),
-                    SecurityDetail(
-                      text: 'Passcode lock',
-                      value: cubit.passCode,
-                      onChanged: (value) {
-                        cubit.passCodeswitch(value);
-                      },
-                    ),
-                  ],
-                ),
-              );
-            },
-          )
-        ],
-      ),
-    ));
+                  );
+                },
+              )
+            ],
+          ),
+        ));
   }
 }

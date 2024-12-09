@@ -1,4 +1,5 @@
 import 'package:ebook_app/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget semiAppBar() {
@@ -10,7 +11,7 @@ Widget semiAppBar() {
       ),
       Spacer(),
       Icon(
-        Icons.notifications,
+        CupertinoIcons.bell,
         size: 33,
       ),
       SizedBox(

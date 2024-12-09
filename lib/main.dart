@@ -1,5 +1,7 @@
 import 'package:ebook_app/features/helpers/dio_helper.dart';
 import 'package:ebook_app/features/helpers/hive_helper.dart';
+import 'package:ebook_app/features/home_screen/books_dio_helper/books_dio_helper.dart';
+import 'package:ebook_app/features/home_screen/cubit/home_screen_cubit.dart';
 import 'package:ebook_app/features/profile_screen/cubit/image_picker_cubit.dart';
 import 'package:ebook_app/features/profile_screen/cubit/switch_cubit.dart';
 import 'package:ebook_app/features/sign_up/cubit/sign_up_cubit.dart';
@@ -21,6 +23,8 @@ void main() async {
   await Hive.openBox('IMAGE_BOX');
 
   DioHelper.init();
+  BooksDioHelper.init();
+
   runApp(const EbookApp());
 }
 
@@ -45,7 +49,10 @@ class EbookApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ImagePickerCubit(userEmail: ''),
-          )
+          ),
+          BlocProvider(
+            create: (context) => HomeScreenCubit()..gettingBooks(),
+          ),
         ],
         child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
