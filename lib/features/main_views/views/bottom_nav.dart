@@ -6,20 +6,36 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MainView extends StatefulWidget {
-  const MainView({super.key});
+  static final GlobalKey<_MainViewState> mainViewKey =
+      GlobalKey<_MainViewState>();
+  final int initialIndex;
+  const MainView({super.key, this.initialIndex = 0});
 
   @override
   State<MainView> createState() => _MainViewState();
 }
 
 class _MainViewState extends State<MainView> {
-  int selectIndex = 0;
+  late int selectIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    selectIndex = widget.initialIndex;
+  }
 
   List<Widget> screens = [
     const HomeView(),
     const SettingView(),
     const ProfileView(),
   ];
+
+  void updateIndex(int index) {
+    setState(() {
+      selectIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +49,7 @@ class _MainViewState extends State<MainView> {
             currentIndex: selectIndex,
             type: BottomNavigationBarType.fixed,
             onTap: (index) {
-              selectIndex = index;
-              setState(() {});
+              updateIndex(index);
             },
             selectedIconTheme: IconThemeData(size: 28),
             unselectedIconTheme: IconThemeData(size: 28),

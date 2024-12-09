@@ -37,7 +37,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         box.put('username', username);
         HiveHelper.setValueLoginBox();
 
-        Get.offAll(const MainView());
+        Get.offAll(() => MainView(key: MainView.mainViewKey));
 
         emit(RegisterSuccessState(model.message ?? ""));
       } else {
