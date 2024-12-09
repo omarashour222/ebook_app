@@ -9,8 +9,7 @@ Widget actualItems({
   final image = books.volumeInfo?.imageLinks?.thumbnail ??
       'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png';
   final title = books.volumeInfo?.title ?? 'no title';
-  final authorsList =
-      books.volumeInfo?.authors ?? []; // Handle authors as a list
+  final authorsList = books.volumeInfo?.authors ?? [];
   final authors =
       authorsList.isNotEmpty ? authorsList.join(', ') : 'Unknown Author';
   final description = books.volumeInfo?.description ?? '';

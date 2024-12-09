@@ -2,6 +2,7 @@ import 'package:ebook_app/features/home_screen/cubit/home_screen_cubit.dart';
 import 'package:ebook_app/features/home_screen/widgets/grid_builder.dart';
 import 'package:ebook_app/features/home_screen/widgets/searchbar.dart';
 import 'package:ebook_app/features/home_screen/widgets/semi_appbar.dart';
+import 'package:ebook_app/features/home_screen/widgets/skeleton.dart';
 import 'package:ebook_app/features/home_screen/widgets/welcome.dart';
 import 'package:ebook_app/features/signin_screen/cubit/sign_in_cubit.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,6 @@ class HomeView extends StatelessWidget {
       listener: (context, state) {
         if (state is GettingBooksFailed) {
           Get.snackbar('Error', state.msg, backgroundColor: Colors.red);
-        } else if (state is GettingBooksSuccess) {
-          Get.snackbar('Success', 'News have Loaded Succefully',
-              backgroundColor: Colors.green);
         }
       },
       child: Scaffold(
@@ -52,9 +50,7 @@ class HomeView extends StatelessWidget {
                   BlocBuilder<HomeScreenCubit, HomeScreenState>(
                     builder: (context, state) {
                       if (state is GettingBooksLoading) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
+                        return skeletonItems();
                       } else {
                         return gridBuilder(context);
                       }
