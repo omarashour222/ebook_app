@@ -5,14 +5,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget semiAppBar() {
+Widget semiAppBar(BuildContext context) {
   final MainViewController controller = Get.find<MainViewController>();
   return Row(
     children: [
-      Icon(
-        Icons.menu,
-        size: 33,
-      ),
+      Builder(builder: (context) {
+        return GestureDetector(
+          onTap: () {
+            Scaffold.of(context).openDrawer();
+          },
+          child: Icon(
+            Icons.menu,
+            size: 33,
+          ),
+        );
+      }),
       Spacer(),
       Icon(
         CupertinoIcons.bell,

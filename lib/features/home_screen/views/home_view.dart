@@ -25,38 +25,45 @@ class HomeView extends StatelessWidget {
       },
       child: Scaffold(
           backgroundColor: Colors.white,
-          body: Padding(
-            padding: EdgeInsets.only(
-              left: width * 0.05,
-              right: width * 0.05,
-            ),
-            child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: height * 0.069,
-                  ),
-                  semiAppBar(),
-                  welcome(signInCubit),
-                  const SizedBox(
-                    height: 28,
-                  ),
-                  searchBar(height, width, context),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  BlocBuilder<HomeScreenCubit, HomeScreenState>(
-                    builder: (context, state) {
-                      if (state is GettingBooksLoading) {
-                        return skeletonItems();
-                      } else {
-                        return gridBuilder(context);
-                      }
-                    },
-                  ),
-                ],
+          drawer: Drawer(),
+          body: GestureDetector(
+            onTap: () {
+              FocusManager.instance.primaryFocus!
+                  .unfocus(); //to completely unfocus from search field when pressing outside the screen (cuz drawer was auto focus on text field)
+            },
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: width * 0.05,
+                right: width * 0.05,
+              ),
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: height * 0.069,
+                    ),
+                    semiAppBar(context),
+                    welcome(signInCubit),
+                    const SizedBox(
+                      height: 28,
+                    ),
+                    searchBar(height, width, context),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    BlocBuilder<HomeScreenCubit, HomeScreenState>(
+                      builder: (context, state) {
+                        if (state is GettingBooksLoading) {
+                          return skeletonItems();
+                        } else {
+                          return gridBuilder(context);
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           )),
