@@ -21,6 +21,7 @@ class BookDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),

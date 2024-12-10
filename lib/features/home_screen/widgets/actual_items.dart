@@ -21,7 +21,7 @@ Widget actualItems({
         child: GestureDetector(
           onTap: () {
             Get.to(
-              BookDetails(
+              () => BookDetails(
                 imageUrl: image,
                 title: title,
                 author: authors,
