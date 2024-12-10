@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 Widget semiAppBar() {
+  final MainViewController controller = Get.find<MainViewController>();
   return Row(
     children: [
       Icon(
@@ -22,13 +23,7 @@ Widget semiAppBar() {
       ),
       GestureDetector(
         onTap: () {
-          final mainViewState = MainView.mainViewKey.currentState;
-          if (mainViewState != null) {
-            mainViewState.updateIndex(2);
-          } else {
-            // Navigate to MainView with index 2 if GlobalKey fails
-            Get.offAll(() => const MainView(initialIndex: 2));
-          }
+          controller.updateIndex(2);
         },
         child: CircleAvatar(
           backgroundImage:

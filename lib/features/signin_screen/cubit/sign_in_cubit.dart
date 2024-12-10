@@ -60,7 +60,7 @@ class SignInCubit extends Cubit<SignInState> {
         var box = Hive.box('USER_BOX');
         box.put('username', username);
         HiveHelper.setValueLoginBox();
-        Get.offAll(() => MainView(key: MainView.mainViewKey));
+        Get.offAll(() => MainView());
         emit(LogInSuccess());
       } else {
         emit(LogInFailed(model.message ?? 'couldn\'t find the error'));
