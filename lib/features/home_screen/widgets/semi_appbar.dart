@@ -1,6 +1,5 @@
 import 'package:ebook_app/constants.dart';
 import 'package:ebook_app/features/main_views/views/bottom_nav.dart';
-import 'package:ebook_app/features/profile_screen/views/profile_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +29,7 @@ Widget semiAppBar(BuildContext context) {
       ),
       GestureDetector(
         onTap: () {
-          controller.updateIndex(2);
+          controller.updateIndex(3);
         },
         child: CircleAvatar(
           backgroundImage:

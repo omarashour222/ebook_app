@@ -1,6 +1,7 @@
 import 'package:ebook_app/constants.dart';
 import 'package:ebook_app/features/home_screen/views/home_view.dart';
 import 'package:ebook_app/features/profile_screen/views/profile_view.dart';
+import 'package:ebook_app/features/saved_view/views/saved_view.dart';
 import 'package:ebook_app/features/settings_screen/views/setting_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class MainView extends StatelessWidget {
 
   final List<Widget> screens = [
     const HomeView(),
+    const SavedView(),
     const SettingView(),
     const ProfileView(),
   ];
@@ -47,6 +49,10 @@ class MainView extends StatelessWidget {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home_outlined),
                   label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(CupertinoIcons.heart),
+                  label: 'Saved',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.settings_outlined),

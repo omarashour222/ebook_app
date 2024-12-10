@@ -1,3 +1,5 @@
+import 'package:hive/hive.dart';
+part 'books_model.g.dart';
 class BooksModel {
   String? kind;
   int? totalItems;
@@ -16,12 +18,14 @@ class BooksModel {
     }
   }
 }
-
+@HiveType(typeId: 0)
 class Items {
   String? kind;
   String? id;
   String? etag;
   String? selfLink;
+
+  @HiveField(0)
   VolumeInfo? volumeInfo;
   SaleInfo? saleInfo;
   AccessInfo? accessInfo;
@@ -56,8 +60,9 @@ class Items {
         : null;
   }
 }
-
+@HiveType(typeId: 1)
 class VolumeInfo {
+  @HiveField(0)
   String? title;
   String? publishedDate;
   List<IndustryIdentifiers>? industryIdentifiers;
@@ -68,13 +73,16 @@ class VolumeInfo {
   bool? allowAnonLogging;
   String? contentVersion;
   PanelizationSummary? panelizationSummary;
+  @HiveField(1)
   ImageLinks? imageLinks;
   String? language;
   String? previewLink;
   String? infoLink;
   String? canonicalVolumeLink;
+  @HiveField(2)
   List<String>? authors;
   String? publisher;
+  @HiveField(3)
   String? description;
   List<String>? categories;
 
@@ -178,9 +186,10 @@ class PanelizationSummary {
     containsImageBubbles = json['containsImageBubbles'];
   }
 }
-
+@HiveType(typeId: 2)
 class ImageLinks {
   String? smallThumbnail;
+  @HiveField(0)
   String? thumbnail;
 
   ImageLinks({this.smallThumbnail, this.thumbnail});

@@ -2,7 +2,10 @@ import 'package:ebook_app/features/book_details/widgets/book_buttom.dart';
 import 'package:ebook_app/features/book_details/widgets/book_description.dart';
 import 'package:ebook_app/features/book_details/widgets/book_image.dart';
 import 'package:ebook_app/features/book_details/widgets/book_rate.dart';
+import 'package:ebook_app/features/home_screen/model/books_model.dart';
+import 'package:ebook_app/features/saved_view/cubit/saved_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookDetails extends StatelessWidget {
   const BookDetails({
@@ -20,6 +23,16 @@ class BookDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<SavedCubit>();
+    final book = Items(
+      volumeInfo: VolumeInfo(
+        title: title,
+        authors: [author],
+        description: description,
+        imageLinks: ImageLinks(thumbnail: imageUrl),
+      ),
+    );
+    final isSaved = cubit.isBookSaved(book);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(),
@@ -55,7 +68,13 @@ class BookDetails extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: BookButtom(),
+              child: BookButtom(
+                imageUrl: imageUrl,
+                title: title,
+                author: author,
+                description: description,
+                isSaved: isSaved,
+              ),
             ),
           ],
         ),
