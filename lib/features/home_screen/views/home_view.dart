@@ -1,10 +1,13 @@
 import 'package:ebook_app/features/home_screen/cubit/home_screen_cubit.dart';
 import 'package:ebook_app/features/home_screen/widgets/grid_builder.dart';
+import 'package:ebook_app/features/home_screen/widgets/menu_drawer.dart';
 import 'package:ebook_app/features/home_screen/widgets/searchbar.dart';
 import 'package:ebook_app/features/home_screen/widgets/semi_appbar.dart';
 import 'package:ebook_app/features/home_screen/widgets/skeleton.dart';
 import 'package:ebook_app/features/home_screen/widgets/welcome.dart';
+import 'package:ebook_app/features/main_views/views/bottom_nav.dart';
 import 'package:ebook_app/features/signin_screen/cubit/sign_in_cubit.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -17,6 +20,7 @@ class HomeView extends StatelessWidget {
     final signInCubit = context.read<SignInCubit>();
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    final MainViewController controller = Get.find<MainViewController>();
     return BlocListener<HomeScreenCubit, HomeScreenState>(
       listener: (context, state) {
         if (state is GettingBooksFailed) {
@@ -25,7 +29,7 @@ class HomeView extends StatelessWidget {
       },
       child: Scaffold(
           backgroundColor: Colors.white,
-          drawer: Drawer(),
+          drawer: menuDrawer(signInCubit, controller),
           body: GestureDetector(
             onTap: () {
               FocusManager.instance.primaryFocus!
