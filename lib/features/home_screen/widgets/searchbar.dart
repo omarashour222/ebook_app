@@ -26,14 +26,19 @@ Widget searchBar(double height, double width, BuildContext context) {
           ),
           suffixIcon: Padding(
             padding: const EdgeInsets.only(right: 15),
-            child: Icon(
-              CupertinoIcons.search,
-              size: 30,
+            child: GestureDetector(
+              onTap: () {
+                cubit.gettingBooks(searchText: cubit.searchController.text);
+                FocusScope.of(context).unfocus();
+              },
+              child: Icon(
+                CupertinoIcons.search,
+                size: 30,
+              ),
             ),
           )),
-      onChanged: (value) {
-        print("Search Query: $value");
-        cubit.searchBooks(value);
+      onFieldSubmitted: (value) {
+        cubit.gettingBooks(searchText: value);
       },
       controller: cubit.searchController,
       onTapOutside: (event) {
