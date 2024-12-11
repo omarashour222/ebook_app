@@ -29,14 +29,11 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
             .map((e) => Items.fromJson(e))
             .toList();
         allbooksList = List.from(booksList);
-        print('Books List: ${booksList.length} items');
-        print(booksList);
         emit(GettingBooksSuccess());
       } else {
         emit(GettingBooksFailed(msg: 'couldnt load books (response error)'));
       }
     } catch (e) {
-      print("Error in gettingBooks: $e"); // Log the error to check the cause
       emit(GettingBooksFailed(msg: 'couldnt load books (code error)'));
     }
   }
