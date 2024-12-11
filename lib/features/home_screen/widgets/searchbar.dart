@@ -29,7 +29,8 @@ Widget searchBar(double height, double width, BuildContext context) {
             child: GestureDetector(
               onTap: () {
                 cubit.gettingBooks(searchText: cubit.searchController.text);
-                FocusScope.of(context).unfocus();
+                FocusManager.instance.primaryFocus!.unfocus();
+                cubit.searchController.text = '';
               },
               child: Icon(
                 CupertinoIcons.search,
@@ -39,6 +40,7 @@ Widget searchBar(double height, double width, BuildContext context) {
           )),
       onFieldSubmitted: (value) {
         cubit.gettingBooks(searchText: value);
+        cubit.searchController.text = '';
       },
       controller: cubit.searchController,
       onTapOutside: (event) {
