@@ -35,7 +35,9 @@ class BookDetails extends StatelessWidget {
     final isSaved = cubit.isBookSaved(book);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
         child: Stack(

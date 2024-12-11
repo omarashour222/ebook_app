@@ -10,6 +10,7 @@ class SavedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: BlocBuilder<SavedCubit, SavedState>(
         builder: (context, state) {
           final cubit = context.read<SavedCubit>();
