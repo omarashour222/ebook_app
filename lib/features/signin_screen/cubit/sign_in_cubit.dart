@@ -16,6 +16,7 @@ class SignInCubit extends Cubit<SignInState> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   String? username;
+  String? emaill;
   SignInModel model = SignInModel();
   bool istextObsecured = true;
   SignInCubit() : super(SignInInitial());
@@ -55,12 +56,14 @@ class SignInCubit extends Cubit<SignInState> {
       model = SignInModel.fromJson(response.data);
       if (model.status == true) {
         HiveHelper.setToken(model.data?.token ?? "");
+        HiveHelper.setValueLoginBox();
         username = model.data?.name;
-
+        emaill = model.data?.email;
         var box = Hive.box('USER_BOX');
         box.put('username', username);
-        HiveHelper.setValueLoginBox();
-        Get.offAll(() => MainView());
+        box.put('email', emaill);
+        debugPrint('User logged in successfully: Token = ${model.data?.token}');
+        Get.offAll(MainView());
         emit(LogInSuccess());
       } else {
         emit(LogInFailed(model.message ?? 'couldn\'t find the error'));

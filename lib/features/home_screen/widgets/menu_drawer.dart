@@ -1,10 +1,17 @@
 import 'package:ebook_app/constants.dart';
+import 'package:ebook_app/features/helpers/hive_helper.dart';
 import 'package:ebook_app/features/main_views/views/bottom_nav.dart';
+import 'package:ebook_app/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:ebook_app/features/signin_screen/cubit/sign_in_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
 Drawer menuDrawer(SignInCubit signInCubit, MainViewController controller) {
+  var box = Hive.box('USER_BOX');
+  String? username = box.get('username', defaultValue: signInCubit.username);
+  String? email = box.get('email', defaultValue: signInCubit.emaill);
   return Drawer(
     backgroundColor: Colors.white,
     child: ListView(
@@ -20,9 +27,8 @@ Drawer menuDrawer(SignInCubit signInCubit, MainViewController controller) {
               backgroundImage:
                   AssetImage(imagePath + 'profile pic placeholder.webp'),
             ),
-            accountName: Text(signInCubit.model.data?.name ?? 'N/A'),
-            accountEmail:
-                Text(signInCubit.model.data?.email ?? 'No email created')),
+            accountName: Text('${username ?? 'N/A'} '),
+            accountEmail: Text('${email ?? 'No email created'}')),
         const Divider(
           color: Colors.transparent,
         ),
@@ -55,7 +61,11 @@ Drawer menuDrawer(SignInCubit signInCubit, MainViewController controller) {
         ListTile(
           leading: Icon(Icons.logout),
           title: Text('Logout'),
-          onTap: () {},
+          onTap: () {
+            HiveHelper.deleteToken();
+            debugPrint('Token after logout: ${HiveHelper.getToken()}');
+            Get.offAll(OnboardingView());
+          },
         ),
       ],
     ),

@@ -14,6 +14,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitial());
   SignInModel model = SignInModel();
   String? username;
+  String? emaill;
   void Register({
     required String email,
     required String phone,
@@ -32,9 +33,10 @@ class SignUpCubit extends Cubit<SignUpState> {
       if (model.status == true) {
         HiveHelper.setToken(model.data?.token ?? "");
         username = model.data?.name;
-
+        emaill = model.data?.email;
         var box = Hive.box('USER_BOX');
         box.put('username', username);
+        box.put('email', emaill);
         HiveHelper.setValueLoginBox();
 
         Get.offAll(() => MainView());
