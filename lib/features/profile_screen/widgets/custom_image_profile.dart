@@ -9,6 +9,7 @@ class CustomImageProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ImagePickerCubit>();
+    cubit.loadImage();
     return Center(
       child: BlocBuilder<ImagePickerCubit, ImagePickerState>(
         builder: (context, state) {
@@ -17,9 +18,11 @@ class CustomImageProfile extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 50,
-                               backgroundImage: cubit.selectedImage != null
-                    ? MemoryImage(cubit.selectedImage!) // تحقق من أن الصورة موجودة
-                    : AssetImage('assets/images/profile pic placeholder.webp') as ImageProvider, 
+                backgroundImage: cubit.selectedImage != null
+                    ? MemoryImage(
+                        cubit.selectedImage!) // تحقق من أن الصورة موجودة
+                    : AssetImage('assets/images/profile pic placeholder.webp')
+                        as ImageProvider,
               ),
               Positioned(
                 bottom: 6,

@@ -21,7 +21,7 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(ItemsAdapter());
-  Hive.registerAdapter(VolumeInfoAdapter());
+  Hive.registerAdapter(VolumeInfoAdapter()); 
   Hive.registerAdapter(ImageLinksAdapter());
   await Hive.openBox<Items>(favoritesBox);
   await Hive.openBox('onboardingBox');

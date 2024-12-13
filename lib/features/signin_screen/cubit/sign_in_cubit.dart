@@ -62,6 +62,11 @@ class SignInCubit extends Cubit<SignInState> {
         var box = Hive.box('USER_BOX');
         box.put('username', username);
         box.put('email', emaill);
+         String profileImageKey = 'profile_image_$email';
+        var imagePath = box.get(profileImageKey); // Get stored image path if exists
+        if (imagePath != null) {
+          box.put(profileImageKey, imagePath); // Save image path for the specific user
+        }
         debugPrint('User logged in successfully: Token = ${model.data?.token}');
         Get.offAll(MainView());
         emit(LogInSuccess());
