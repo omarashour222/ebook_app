@@ -43,7 +43,7 @@ class OnboardingViewBody extends StatelessWidget {
           textColor: kPrimaryColor,
           onTap: () {
             Hive.box('onboardingBox').put('ONBOARDING_KEY', true);
-            Get.offAll(SignUpView());
+            Get.to(SignUpView());
           },
         ),
         SizedBox(
@@ -52,7 +52,7 @@ class OnboardingViewBody extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Hive.box('onboardingBox').put('ONBOARDING_KEY', true);
-            Get.offAll(() => SigninView());
+            Get.to(() => SigninView());
           },
           child: CustomButtom(
             color: kPrimaryColor,

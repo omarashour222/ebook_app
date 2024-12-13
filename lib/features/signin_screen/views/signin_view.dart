@@ -22,7 +22,6 @@ class SigninView extends StatelessWidget {
         return Form(
           key: formKey,
           child: Scaffold(
-            backgroundColor: Colors.white,
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.08),
               child: SingleChildScrollView(

@@ -30,7 +30,6 @@ class SignUpView extends StatelessWidget {
         // TODO: implement listener
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: SignUpViewBody(),
       ),
     );
