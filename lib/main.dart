@@ -10,11 +10,13 @@ import 'package:ebook_app/features/sign_up/cubit/sign_up_cubit.dart';
 import 'package:ebook_app/features/signin_screen/cubit/sign_in_cubit.dart';
 import 'package:ebook_app/features/splash_screen/cubit/splash_screen_cubit.dart';
 import 'package:ebook_app/features/splash_screen/view/splash_view.dart';
+import 'package:ebook_app/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +35,10 @@ void main() async {
   DioHelper.init();
   BooksDioHelper.init();
 
-  runApp(const EbookApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => ThemeProvider(),
+    child: const EbookApp(),
+  ));
 }
 
 class EbookApp extends StatelessWidget {
@@ -41,6 +46,7 @@ class EbookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -66,8 +72,11 @@ class EbookApp extends StatelessWidget {
           ),
         ],
         child: GetMaterialApp(
+          themeMode: themeProvider.themeMode,
+          theme: MyThemes.lightTheme,
+          darkTheme: MyThemes.darkTheme,
           debugShowCheckedModeBanner: false,
-          home: SplashView(),
+          home: const SplashView(),
         ));
   }
 }

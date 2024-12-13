@@ -44,7 +44,6 @@ class MainView extends StatelessWidget {
               },
               selectedIconTheme: const IconThemeData(size: 28),
               unselectedIconTheme: const IconThemeData(size: 28),
-              backgroundColor: Colors.white,
               items: const [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home_outlined),

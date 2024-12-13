@@ -8,12 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-Drawer menuDrawer(SignInCubit signInCubit, MainViewController controller) {
+Drawer menuDrawer(
+  SignInCubit signInCubit,
+  MainViewController controller,
+) {
   var box = Hive.box('USER_BOX');
   String? username = box.get('username', defaultValue: signInCubit.username);
   String? email = box.get('email', defaultValue: signInCubit.emaill);
   return Drawer(
-    backgroundColor: Colors.white,
     child: ListView(
       children: [
         UserAccountsDrawerHeader(
@@ -47,7 +49,6 @@ Drawer menuDrawer(SignInCubit signInCubit, MainViewController controller) {
           },
         ),
         Divider(
-          color: Colors.black,
           indent: 20,
           endIndent: 20,
         ),
