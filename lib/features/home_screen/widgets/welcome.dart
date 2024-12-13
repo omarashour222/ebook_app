@@ -3,9 +3,11 @@ import 'package:ebook_app/features/signin_screen/cubit/sign_in_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-Widget welcome(SignInCubit signInCubit,) {
-      var box = Hive.box('USER_BOX');
-    String? username = box.get('username', defaultValue: signInCubit.username);
+Widget welcome(
+  SignInCubit signInCubit,
+) {
+  var box = Hive.box('USER_BOX');
+  String? username = box.get('username', defaultValue: signInCubit.username);
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -13,7 +15,7 @@ Widget welcome(SignInCubit signInCubit,) {
         height: 11,
       ),
       Text(
-        'Hello, ${username?? 'N/A'}',
+        'Hello, ${username ?? 'N/A'}',
         style: TextStyle(
             color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 27),
       ),

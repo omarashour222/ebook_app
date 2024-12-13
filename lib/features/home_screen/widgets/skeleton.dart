@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-Widget skeletonItems() {
+Widget skeletonItems(BuildContext context) {
   return GridView.builder(
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
@@ -15,8 +15,8 @@ Widget skeletonItems() {
     itemCount: 10,
     itemBuilder: (context, index) {
       return Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
+        baseColor: Theme.of(context).colorScheme.primary,
+        highlightColor: Theme.of(context).colorScheme.secondary,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,7 +24,7 @@ Widget skeletonItems() {
               height: 280,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(23),
-                color: Colors.grey[300],
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
             const SizedBox(height: 8),
@@ -35,7 +35,7 @@ Widget skeletonItems() {
                 width: 140,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(23),
-                  color: Colors.grey[300],
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
             ),

@@ -28,7 +28,6 @@ class HomeView extends StatelessWidget {
         }
       },
       child: Scaffold(
-          backgroundColor: Colors.white,
           drawer: menuDrawer(signInCubit, controller),
           body: GestureDetector(
             onTap: () {
@@ -60,7 +59,7 @@ class HomeView extends StatelessWidget {
                     BlocBuilder<HomeScreenCubit, HomeScreenState>(
                       builder: (context, state) {
                         if (state is GettingBooksLoading) {
-                          return skeletonItems();
+                          return skeletonItems(context);
                         } else {
                           return gridBuilder(context);
                         }
