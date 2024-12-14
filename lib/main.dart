@@ -3,6 +3,7 @@ import 'package:ebook_app/features/helpers/hive_helper.dart';
 import 'package:ebook_app/features/home_screen/books_dio_helper/books_dio_helper.dart';
 import 'package:ebook_app/features/home_screen/cubit/home_screen_cubit.dart';
 import 'package:ebook_app/features/home_screen/model/books_model.dart';
+import 'package:ebook_app/features/main_views/views/bottom_nav.dart';
 import 'package:ebook_app/features/profile_screen/cubit/image_picker_cubit.dart';
 import 'package:ebook_app/features/profile_screen/cubit/switch_cubit.dart';
 import 'package:ebook_app/features/saved_view/cubit/saved_cubit.dart';
@@ -23,7 +24,7 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(ItemsAdapter());
-  Hive.registerAdapter(VolumeInfoAdapter()); 
+  Hive.registerAdapter(VolumeInfoAdapter());
   Hive.registerAdapter(ImageLinksAdapter());
   await Hive.openBox<Items>(favoritesBox);
   await Hive.openBox('onboardingBox');
@@ -34,7 +35,7 @@ void main() async {
 
   DioHelper.init();
   BooksDioHelper.init();
-
+  Get.put(MainViewController());
   runApp(ChangeNotifierProvider(
     create: (context) => ThemeProvider(),
     child: const EbookApp(),

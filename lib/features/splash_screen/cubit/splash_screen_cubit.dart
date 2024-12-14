@@ -31,12 +31,12 @@ class SplashScreenCubit extends Cubit<SplashScreenState> {
       time.cancel();
       if (isOnboardingCompleted) {
       if (HiveHelper.checkLoginValue() && HiveHelper.getToken() != null) {
-        Get.offAll( MainView());
+        Get.offAll(()=> MainView());
       } else {
-        Get.offAll( OnboardingView());
+        Get.offAll(()=> OnboardingView());
       }
     } else {
-      Get.offAll(OnboardingView());
+      Get.offAll(()=>OnboardingView());
     }
     });
   }
