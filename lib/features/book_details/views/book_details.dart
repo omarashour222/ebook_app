@@ -2,6 +2,7 @@ import 'package:ebook_app/features/book_details/widgets/book_buttom.dart';
 import 'package:ebook_app/features/book_details/widgets/book_description.dart';
 import 'package:ebook_app/features/book_details/widgets/book_image.dart';
 import 'package:ebook_app/features/book_details/widgets/book_rate.dart';
+import 'package:ebook_app/features/book_details/widgets/saved_buttom.dart';
 import 'package:ebook_app/features/home_screen/model/books_model.dart';
 import 'package:ebook_app/features/saved_view/cubit/saved_cubit.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,18 @@ class BookDetails extends StatelessWidget {
     );
     final isSaved = cubit.isBookSaved(book);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 20.0),
+          child: SavedButtom(
+            imageUrl: imageUrl,
+            title: title,
+            author: author,
+            isSaved: isSaved,
+            description: description,
+          ),
+        ),
+      ]),
       body: Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
         child: Stack(
@@ -68,11 +80,7 @@ class BookDetails extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: BookButtom(
-                imageUrl: imageUrl,
-                title: title,
-                author: author,
-                description: description,
-                isSaved: isSaved,
+                text: 'Buy now',
               ),
             ),
           ],

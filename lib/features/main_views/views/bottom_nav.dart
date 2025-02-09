@@ -31,7 +31,7 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Obx(() => SizedBox(
-            height: 80,
+            height: 90,
             child: BottomNavigationBar(
               selectedItemColor: kPrimaryColor,
               unselectedItemColor: const Color(0xFF92929D),

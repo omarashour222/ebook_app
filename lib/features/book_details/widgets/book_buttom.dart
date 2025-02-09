@@ -1,73 +1,78 @@
 import 'package:ebook_app/constants.dart';
-import 'package:ebook_app/features/home_screen/model/books_model.dart';
+import 'package:ebook_app/features/book_details/widgets/payment_method_list_view.dart';
 import 'package:ebook_app/features/saved_view/cubit/saved_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 
 class BookButtom extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final String author;
-  final String description;
-  final bool isSaved;
+  final String text;
   const BookButtom({
     super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.author,
-    required this.description,
-    required this.isSaved,
+    required this.text,
   });
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<SavedCubit>();
-    final book = Items(
-      volumeInfo: VolumeInfo(
-        title: title,
-        authors: [author],
-        description: description,
-        imageLinks: ImageLinks(thumbnail: imageUrl),
-      ),
-    );
-
     return BlocBuilder<SavedCubit, SavedState>(
       builder: (context, savedBooks) {
-        final isSaved = cubit.isBookSaved(book);
-
         return GestureDetector(
           onTap: () {
-            if (isSaved) {
-              cubit.removeBook(book);
-              Get.snackbar('Removed', 'Book Removed from saved',
-                  backgroundColor: Colors.red);
-            } else {
-              cubit.saveBook(book);
-              Get.snackbar('Successful', 'Book Added to saved',
-                  backgroundColor: Colors.green);
-            }
+            showModalBottomSheet(
+                context: context,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                builder: (context) {
+                  return PaymentMethodBottomSheet();
+                });
           },
-          child: Container(
-            height: 55,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: isSaved ? Colors.grey : kPrimaryColor,
-            ),
-            child: Center(
-              child: Text(
-                isSaved ? 'Remove from Saved' : 'Save Book',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 10.0),
+            child: Container(
+              height: 55,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: kPrimaryColor,
+              ),
+              child: Center(
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
           ),
         );
       },
+    );
+  }
+}
+
+class PaymentMethodBottomSheet extends StatelessWidget {
+  const PaymentMethodBottomSheet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            height: 16,
+          ),
+          PaymentMethodListView(),
+          SizedBox(
+            height: 32,
+          ),
+          BookButtom(text: 'Continue'),
+        ],
+      ),
     );
   }
 }
