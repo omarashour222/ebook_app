@@ -4,6 +4,7 @@ part of 'sign_up_cubit.dart';
 sealed class SignUpState {}
 
 final class SignUpInitial extends SignUpState {}
+
 final class RegisterLoadingState extends SignUpState {}
 
 final class RegisterSuccessState extends SignUpState {

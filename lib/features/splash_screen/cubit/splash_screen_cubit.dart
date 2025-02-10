@@ -25,19 +25,19 @@ class SplashScreenCubit extends Cubit<SplashScreenState> {
     var box = Hive.box('onboardingBox');
     bool isOnboardingCompleted = box.get('ONBOARDING_KEY', defaultValue: false);
     debugPrint('Is Onboarding Completed: $isOnboardingCompleted');
-  debugPrint('Is Logged In: ${HiveHelper.checkLoginValue()}');
-  debugPrint('Token: ${HiveHelper.getToken()}');
+    debugPrint('Is Logged In: ${HiveHelper.checkLoginValue()}');
+    debugPrint('Token: ${HiveHelper.getToken()}');
     await Future.delayed(const Duration(seconds: 5)).then((val) {
       time.cancel();
       if (isOnboardingCompleted) {
-      if (HiveHelper.checkLoginValue() && HiveHelper.getToken() != null) {
-        Get.offAll(()=> MainView());
+        if (HiveHelper.checkLoginValue() && HiveHelper.getToken() != null) {
+          Get.offAll(() => MainView());
+        } else {
+          Get.offAll(() => OnboardingView());
+        }
       } else {
-        Get.offAll(()=> OnboardingView());
+        Get.offAll(() => OnboardingView());
       }
-    } else {
-      Get.offAll(()=>OnboardingView());
-    }
     });
   }
 

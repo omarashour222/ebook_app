@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileDetail extends StatelessWidget {
-  const ProfileDetail({super.key, required this.text,required this.icon});
+  const ProfileDetail({super.key, required this.text, required this.icon});
   final String text;
   final IconData icon;
   @override

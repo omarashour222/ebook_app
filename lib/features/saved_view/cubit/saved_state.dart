@@ -4,6 +4,7 @@ part of 'saved_cubit.dart';
 abstract class SavedState {}
 
 class SavedInitial extends SavedState {}
+
 class SavedLoading extends SavedState {}
 
 class SavedBooks extends SavedState {

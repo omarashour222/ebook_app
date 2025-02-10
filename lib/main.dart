@@ -1,9 +1,12 @@
+import 'package:ebook_app/core/utils/api_keys.dart';
+import 'package:ebook_app/data/repos/checkout_repo_impl.dart';
 import 'package:ebook_app/features/helpers/dio_helper.dart';
 import 'package:ebook_app/features/helpers/hive_helper.dart';
 import 'package:ebook_app/features/home_screen/books_dio_helper/books_dio_helper.dart';
 import 'package:ebook_app/features/home_screen/cubit/home_screen_cubit.dart';
 import 'package:ebook_app/features/home_screen/model/books_model.dart';
 import 'package:ebook_app/features/main_views/views/bottom_nav.dart';
+import 'package:ebook_app/features/manger/cubit/payment_cubit.dart';
 import 'package:ebook_app/features/profile_screen/cubit/image_picker_cubit.dart';
 import 'package:ebook_app/features/profile_screen/cubit/switch_cubit.dart';
 import 'package:ebook_app/features/saved_view/cubit/saved_cubit.dart';
@@ -14,13 +17,14 @@ import 'package:ebook_app/features/splash_screen/view/splash_view.dart';
 import 'package:ebook_app/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  Stripe.publishableKey = ApiKeys.publishableKey;
   await Hive.initFlutter();
   Hive.registerAdapter(ItemsAdapter());
   Hive.registerAdapter(VolumeInfoAdapter());
@@ -69,6 +73,9 @@ class EbookApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => SavedCubit(),
+          ),
+          BlocProvider(
+            create: (context) => PaymentCubit(CheckoutRepoImpl()),
           ),
         ],
         child: GetMaterialApp(

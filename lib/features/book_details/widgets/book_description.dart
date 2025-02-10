@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class BookDescription extends StatelessWidget {
   const BookDescription({
-    super.key, required this.description,
+    super.key,
+    required this.description,
   });
   final String description;
   @override

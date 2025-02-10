@@ -2,6 +2,7 @@ import 'package:ebook_app/features/book_details/widgets/book_buttom.dart';
 import 'package:ebook_app/features/book_details/widgets/book_description.dart';
 import 'package:ebook_app/features/book_details/widgets/book_image.dart';
 import 'package:ebook_app/features/book_details/widgets/book_rate.dart';
+import 'package:ebook_app/features/book_details/widgets/payment_method_bottom_sheet.dart';
 import 'package:ebook_app/features/book_details/widgets/saved_buttom.dart';
 import 'package:ebook_app/features/home_screen/model/books_model.dart';
 import 'package:ebook_app/features/saved_view/cubit/saved_cubit.dart';
@@ -81,6 +82,16 @@ class BookDetails extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: BookButtom(
                 text: 'Buy now',
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      builder: (context) {
+                        return PaymentMethodBottomSheet();
+                      });
+                },
               ),
             ),
           ],

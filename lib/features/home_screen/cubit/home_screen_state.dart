@@ -13,5 +13,5 @@ final class GettingBooksFailed extends HomeScreenState {
 }
 
 final class GettingBooksLoading extends HomeScreenState {}
-final class GettingBooksSearch extends HomeScreenState {}
 
+final class GettingBooksSearch extends HomeScreenState {}

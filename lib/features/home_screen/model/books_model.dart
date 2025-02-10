@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 part 'books_model.g.dart';
+
 class BooksModel {
   String? kind;
   int? totalItems;
@@ -18,6 +19,7 @@ class BooksModel {
     }
   }
 }
+
 @HiveType(typeId: 0)
 class Items {
   String? kind;
@@ -60,6 +62,7 @@ class Items {
         : null;
   }
 }
+
 @HiveType(typeId: 1)
 class VolumeInfo {
   @HiveField(0)
@@ -186,6 +189,7 @@ class PanelizationSummary {
     containsImageBubbles = json['containsImageBubbles'];
   }
 }
+
 @HiveType(typeId: 2)
 class ImageLinks {
   String? smallThumbnail;
