@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 Widget actualItems({
   required Items books,
+
 }) {
   final image = books.volumeInfo?.imageLinks?.thumbnail ??
       'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png';

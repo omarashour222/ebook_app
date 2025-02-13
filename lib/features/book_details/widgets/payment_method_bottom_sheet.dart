@@ -2,8 +2,16 @@ import 'package:ebook_app/features/book_details/widgets/custom_button_bloc_consu
 import 'package:ebook_app/features/book_details/widgets/payment_method_list_view.dart';
 import 'package:flutter/material.dart';
 
-class PaymentMethodBottomSheet extends StatelessWidget {
+class PaymentMethodBottomSheet extends StatefulWidget {
+
   const PaymentMethodBottomSheet({super.key});
+
+  @override
+  State<PaymentMethodBottomSheet> createState() => _PaymentMethodBottomSheetState();
+}
+
+class _PaymentMethodBottomSheetState extends State<PaymentMethodBottomSheet> {
+  int selectedPaymentMethod = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +23,17 @@ class PaymentMethodBottomSheet extends StatelessWidget {
           SizedBox(
             height: 16,
           ),
-          PaymentMethodListView(),
+          PaymentMethodListView(
+             onPaymentSelected: (index) {
+            setState(() {
+              selectedPaymentMethod = index;
+            });
+          },
+          ),
           SizedBox(
             height: 32,
           ),
-          CustomBottonBlocConsumer(),
+          CustomBottonBlocConsumer(selectedPaymentMethod: selectedPaymentMethod,),
         ],
       ),
     );
