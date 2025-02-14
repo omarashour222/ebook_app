@@ -18,7 +18,7 @@ TextFormField userNameTextFormField(
         return null;
       },
       decoration: InputDecoration(
-          hintText: ' Username',
+          hintText: ' Email',
           hintStyle: const TextStyle(
             color: Color.fromARGB(255, 149, 149, 149),
           ),
